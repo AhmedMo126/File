@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indications of Surgery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px; /* Reduced padding for better mobile view */
+        }
+        h1 {
+            font-size: 2em; /* Adjusted font size for smaller screens */
+            margin-bottom: 15px; /* Smaller margin for h1 */
+        }
+        button {
+            padding: 10px 20px; /* Smaller padding for buttons */
+            margin: 5px;
+            font-size: 1em; /* Adjusted font size for smaller screens */
+            cursor: pointer;
+        }
+        #content {
+            margin-top: 20px; /* Reduced top margin */
+            font-size: 1em; /* Adjusted font size for smaller screens */
+            text-align: left;
+            max-width: 100%; /* Ensures content doesn't overflow on small screens */
+            overflow-wrap: break-word; /* Allows text to wrap */
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 10px 0;
+        }
+        .slider-container {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .slider {
+            flex: 1;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Indications of surgery in:</h1>
+
+<button onclick="showContent('aorticRegurgitation')">Aortic regurgitation</button>
+<button onclick="showContent('aorticStenosis')">Aortic stenosis</button>
+<button onclick="showContent('mitralRegurgitation')">Mitral regurgitation</button>
+<button onclick="showContent('mitralStenosis')">Mitral stenosis</button>
+
+<div id="content"></div>
+
+<div class="footer">
+    <div class="slider-container">
+        <input type="range" min="0.5" max="2" step="0.1" value="1" class="slider" id="fontSlider" onchange="adjustFontSize()">
+        <button onclick="resetFontSize()">Reset Font Size</button>
+    </div>
+    <br>
+    <button onclick="resetContent()">Reset Content</button>
+</div>
+
+<script>
+    let initialContent = '<p>Select a condition to see its indications for surgery.</p>';
+    let currentFontSize = 1; // Initial font size multiplier
+
+    function showContent(condition) {
+        let content = {
+            aorticRegurgitation: `
+                • Acute AR with CHF: Chronic severe AR in symptomatic patients (dyspnea)<br><br>
+                • Evidence of LV decompensation in the asymptomatic patient:<br>
+                &emsp; - LVEF ≤ 50 % <br>
+                &emsp; - LV end-systolic dimension ≥ 55 mm<br><br>
+                • Significant enlargement of ascending aorta
+            `,
+            aorticStenosis: `
+                • Symptomatic patients: <br>
+                &emsp; - Chest pain <br>
+                &emsp; - Syncope "The most serious" <br>
+                &emsp; - CHF symptoms <br><br>
+                • Asymptomatic patients with AVA ≤ 1 cm2/m2 <br><br>
+                • Pressure gradient > 45-50 mmHg <br><br>
+                • Moderate AS if other cardiac surgery is required (i.e., CABG)
+            `,
+            mitralRegurgitation: `
+                • Acute MR associated with CHF or cardiogenic shock. <br><br>                        
+                • Symptomatic with low surgical risk (operable).<br><br>
+                • Asymptomatic with: <br>
+                &emsp; - LVEF ≤ 60 % <br>
+                &emsp; - LVESD ≥ 40 mm <br>
+                &emsp; - New onset of AF <br>
+                &emsp; - SPAP > 50 mmHg <br>
+            `,
+            mitralStenosis: `
+                • MV area < 1.5 cm2 (normal is 4-6 cm2) with severe dyspnea.<br><br>
+                • Atrial fibrillation and/or systemic emboli (from left atrial thrombus).<br><br>
+                • Worsening pulmonary hypertension.
+            `,
+        };
+
+        document.getElementById('content').innerHTML = content[condition];
+    }
+
+    function resetContent() {
+        document.getElementById('content').innerHTML = initialContent;
+        currentFontSize = 1; // Reset font size to default
+        updateFontSize();
+    }
+
+    function adjustFontSize() {
+        currentFontSize = document.getElementById('fontSlider').value;
+        updateFontSize();
+    }
+
+    function resetFontSize() {
+        currentFontSize = 1; // Reset font size to default
+        document.getElementById('fontSlider').value = 1; // Reset slider position
+        updateFontSize();
+    }
+
+    function updateFontSize() {
+        document.getElementById('content').style.fontSize = `${currentFontSize}em`;
+    }
+</script>
+
+</body>
+</html>
