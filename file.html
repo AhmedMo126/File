@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indications of Surgery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 15px 25px;
+            margin: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        #content {
+            margin-top: 30px;
+            font-size: 1.5em;
+            text-align: left;
+            display: inline-block;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Indications of surgery in:</h1>
+
+<button onclick="showContent('aorticRegurgitation')">Aortic regurgitation</button>
+<button onclick="showContent('aorticStenosis')">Aortic stenosis</button>
+<button onclick="showContent('mitralRegurgitation')">Mitral regurgitation</button>
+<button onclick="showContent('mitralStenosis')">Mitral stenosis</button>
+
+<div id="content"></div>
+
+<script>
+    function showContent(condition) {
+        let content = {
+            aorticRegurgitation: `
+                • Acute AR with CHF: Chronic severe AR in symptomatic patients (dyspnea)<br><br>
+                • Evidence of LV decompensation in the asymptomatic patient:<br>
+                &emsp; - LV end-diastolic dimension > 70 mm<br>
+                &emsp; - LV end-systolic dimension > 55 mm
+            `,
+            aorticStenosis: `
+                • Symptomatic patients (dyspnea, chest pain or fainting attacks) with valve gradient of > 50 mmHg or valve area < 0.8 cm² (normal 3-4 cm²)<br><br>
+                • Asymptomatic patients with significant stenosis and LVH (Left Ventricular Hypertrophy)<br><br>
+                • Moderate AS if other cardiac surgery is required (i.e., CABG)
+            `,
+            mitralRegurgitation: `
+                • Acute MR associated with CHF or cardiogenic shock. <br><br>                        
+                • Chronic severe MR with severe dyspnea.<br><br>
+                • Onset of atrial fibrillation or evidence of deteriorating LV function
+            `,
+            mitralStenosis: `
+                • MV area < 1.5 cm2 (normal is 4-6 cm2) with severe dyspnea.<br><br>
+                • Atrial fibrillation and/or systemic emboli (from left atrial thrombus).<br><br>
+                • Worsening pulmonary hypertension.
+            `,
+                  };
+
+        document.getElementById('content').innerHTML = content[condition];
+    }
+</script>
+
+</body>
+</html>
